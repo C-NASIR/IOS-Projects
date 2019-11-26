@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "065B1092-29A9-4C3D-BF92-827E5ADD0BB5"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F9BA1923-A41C-4B77-8593-04CE410F69A7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bullseye/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "alertTitle()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F34E39C2-1D11-4510-9937-23238CF609CC"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Bullseye/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
+            landmarkName = "alertTitle()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F34E39C2-1D11-4510-9937-23238CF609CC - a02783add97cd8d7"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bullseye.ContentView.playerFeedBack() -&gt; Swift.String"
+                  moduleName = "Bullseye"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdinasirmuhumed/Projects/Bullseye/Bullseye/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "113">
+               </Location>
+               <Location
+                  uuid = "F34E39C2-1D11-4510-9937-23238CF609CC - a02783add97cd8d7"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bullseye.ContentView.playerFeedBack() -&gt; Swift.String"
+                  moduleName = "Bullseye"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdinasirmuhumed/Projects/Bullseye/Bullseye/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "126">
+               </Location>
+               <Location
+                  uuid = "F34E39C2-1D11-4510-9937-23238CF609CC - a02783add97cd8d7"
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Bullseye.ContentView.playerFeedBack() -&gt; Swift.String"
+                  moduleName = "Bullseye"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abdinasirmuhumed/Projects/Bullseye/Bullseye/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "188">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
