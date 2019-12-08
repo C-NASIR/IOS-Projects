@@ -11,7 +11,8 @@ import UIKit
 class NoteViewController: UIViewController {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextView: UITextView!
-    var delegate : NoteViewControllerdelegate!
+    var delegate : NoteViewControllerProtocol!
+    var indexPath : IndexPath!
     var note : Note!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,10 +27,8 @@ class NoteViewController: UIViewController {
         guard let title = titleTextField.text else { return }
         guard let content = contentTextView.text else { return }
         guard let delegate = delegate else { return }
-        note.title = title
-        note.content = content
-        note.updatedAt = Date()
-        delegate.controller(self, didUpdateNote: note)
+        guard let indexPath = indexPath else { return }
+        delegate.controller(self, title: title, content: content, indexPath: indexPath)
         navigationController?.popViewController(animated: true)
     }
 }

@@ -67,20 +67,11 @@ class MainUITableViewController: UITableViewController {
     
     //MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let identifier = segue.identifier else { return }
-        switch identifier {
-        case "segueAddViewController":
-            guard let navVC = segue.destination as? UINavigationController else { return }
-            guard let addVC = navVC.viewControllers.first as? AddNoteViewController else { return }
-            addVC.delegate = self
-        case "segueNoteViewController":
-            guard let noteVC = segue.destination as? NoteViewController else { return }
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            let note = fetchedRC.object(at: indexPath)
-            noteVC.note = note
+        if let noteVC = segue.destination as? NoteViewController,
+            let indexPath = tableView.indexPathForSelectedRow{
+            noteVC.note = fetchedRC.object(at: indexPath)
             noteVC.delegate = self
-        default:
-            print("unknown segue ")
+            noteVC.indexPath = indexPath
         }
     }
     
@@ -90,20 +81,11 @@ class MainUITableViewController: UITableViewController {
     }
 }
 
-extension MainUITableViewController : AddNoteViewControllerDelegate {
-    func controller(_ controller: UIViewController, didAddNoteWithTitle title: String) {
-        let note = Note(context: context)
+extension MainUITableViewController : NoteViewControllerProtocol {
+    func controller(_ controller: UIViewController, title: String, content: String, indexPath : IndexPath) {
+        let note = fetchedRC.object(at: indexPath)
         note.title = title
-        note.content = ""
-        note.updatedAt = Date()
-        note.createdAt = Date()
-        AppDelegate.saveContext()
-    }
-}
-
-extension MainUITableViewController : NoteViewControllerdelegate {
-    func controller(_ controller: UIViewController, didUpdateNote note: Note) {
-        AppDelegate.saveContext()
+        note.content = content
     }
 }
 

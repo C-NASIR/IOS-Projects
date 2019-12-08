@@ -15,9 +15,8 @@
 		3FDBD01F239B2F35009D055C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3FDBD01E239B2F35009D055C /* Assets.xcassets */; };
 		3FDBD022239B2F35009D055C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FDBD020239B2F35009D055C /* LaunchScreen.storyboard */; };
 		3FDBD02B239B34AA009D055C /* AddNoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDBD02A239B34AA009D055C /* AddNoteViewController.swift */; };
-		3FDBD02F239B351A009D055C /* AddNoteViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDBD02E239B351A009D055C /* AddNoteViewControllerDelegate.swift */; };
 		3FDBD031239B3CA4009D055C /* NoteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDBD030239B3CA4009D055C /* NoteViewController.swift */; };
-		3FDBD034239B4C2A009D055C /* NoteViewControllerdelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDBD033239B4C2A009D055C /* NoteViewControllerdelegate.swift */; };
+		3FDBD038239C781C009D055C /* NoteViewControllerdelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDBD037239C781C009D055C /* NoteViewControllerdelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,9 +30,8 @@
 		3FDBD021239B2F35009D055C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3FDBD023239B2F35009D055C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3FDBD02A239B34AA009D055C /* AddNoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewController.swift; sourceTree = "<group>"; };
-		3FDBD02E239B351A009D055C /* AddNoteViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNoteViewControllerDelegate.swift; sourceTree = "<group>"; };
 		3FDBD030239B3CA4009D055C /* NoteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewController.swift; sourceTree = "<group>"; };
-		3FDBD033239B4C2A009D055C /* NoteViewControllerdelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewControllerdelegate.swift; sourceTree = "<group>"; };
+		3FDBD037239C781C009D055C /* NoteViewControllerdelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteViewControllerdelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +64,7 @@
 		3FDBD011239B2F33009D055C /* Notes */ = {
 			isa = PBXGroup;
 			children = (
-				3FDBD02D239B34FE009D055C /* Protocol */,
+				3FDBD036239C77F9009D055C /* Protocol */,
 				3FDBD029239B30FF009D055C /* Model */,
 				3FDBD032239B4062009D055C /* Resources */,
 				3FDBD018239B2F33009D055C /* Main.storyboard */,
@@ -87,15 +85,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		3FDBD02D239B34FE009D055C /* Protocol */ = {
-			isa = PBXGroup;
-			children = (
-				3FDBD02E239B351A009D055C /* AddNoteViewControllerDelegate.swift */,
-				3FDBD033239B4C2A009D055C /* NoteViewControllerdelegate.swift */,
-			);
-			path = Protocol;
-			sourceTree = "<group>";
-		};
 		3FDBD032239B4062009D055C /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +93,14 @@
 				3FDBD020239B2F35009D055C /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		3FDBD036239C77F9009D055C /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				3FDBD037239C781C009D055C /* NoteViewControllerdelegate.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -181,10 +178,9 @@
 				3FDBD017239B2F33009D055C /* MainUITableViewController.swift in Sources */,
 				3FDBD013239B2F33009D055C /* AppDelegate.swift in Sources */,
 				3FDBD015239B2F33009D055C /* SceneDelegate.swift in Sources */,
-				3FDBD02F239B351A009D055C /* AddNoteViewControllerDelegate.swift in Sources */,
 				3FDBD02B239B34AA009D055C /* AddNoteViewController.swift in Sources */,
-				3FDBD034239B4C2A009D055C /* NoteViewControllerdelegate.swift in Sources */,
 				3FDBD01D239B2F34009D055C /* Notes.xcdatamodeld in Sources */,
+				3FDBD038239C781C009D055C /* NoteViewControllerdelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,11 +7,10 @@
 //
 
 import UIKit
-
 class AddNoteViewController: UIViewController {
-
+    private let appdelegate = UIApplication.shared.delegate as! AppDelegate
+    private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     @IBOutlet weak var titleTextField: UITextField!
-    var delegate : AddNoteViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,14 +18,20 @@ class AddNoteViewController: UIViewController {
     
     @IBAction func save(_ sender: Any) {
         guard let title = titleTextField.text else { return }
-        guard let delegate = delegate else { return }
-        delegate.controller(self, didAddNoteWithTitle: title)
-        print("I am save, This is fun")
+        saveData(title: title)
         dismiss(animated: true, completion: nil)
     }
     
     @IBAction func cancel(_ sender: Any) {
-        print("I am cancell and I am called")
         dismiss(animated: true, completion: nil)
     }
-}
+    
+    private func saveData (title : String) {
+            let note = Note(context: context)
+            note.title = title
+            note.content = ""
+            note.updatedAt = Date()
+            note.createdAt = Date()
+            appdelegate.saveContext()
+        }
+    }
