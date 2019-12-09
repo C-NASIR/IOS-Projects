@@ -33,7 +33,7 @@ class DetailTableViewController: UITableViewController {
         
         fetchTermsRC = NSFetchedResultsController(fetchRequest: termsRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
         
-        
+        fetchTermsRC.delegate = self
         do {
             try fetchTermsRC.performFetch()
             if department.name == "Pediatrics" && fetchTermsRC.fetchedObjects?.count == 0{
@@ -53,7 +53,7 @@ class DetailTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return fetchTermsRC.fetchedObjects?.count ?? 0
     }
     
     
@@ -72,6 +72,21 @@ class DetailTableViewController: UITableViewController {
         cell.spanishLabel.text = item.spanish
     }
     
+    //MARK: - Table View Delegate
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let term = fetchTermsRC.object(at: indexPath)
+            context.delete(term)
+            appdelegate.saveContext()
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        let term = fetchTermsRC.object(at: sourceIndexPath)
+        term.priority = 1
+        appdelegate.saveContext()
+    }
+    
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nav = segue.destination as? UINavigationController,
@@ -80,13 +95,13 @@ class DetailTableViewController: UITableViewController {
         }
     }
     
-    
     //MARK: Only for initial loading of PediatricTerms
     private func loadingInitialPedTerms(){
         if department.name == "Pediatrics" {
             let termsDic = wordsList().Pterms
             for (english,terms) in  termsDic {
-                let term = Term(entity: Term.entity(), insertInto: context)
+                let term = Term(context: context)
+                print(english)
                 term.english = english
                 term.termdescription = terms[Languages.English]
                 term.spanish = terms[Languages.Spanish]
@@ -99,3 +114,35 @@ class DetailTableViewController: UITableViewController {
     }
 }
 
+extension DetailTableViewController : NSFetchedResultsControllerDelegate {
+    func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.beginUpdates()
+    }
+    
+    func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+        switch type {
+        case .insert:
+            if let indexPath = newIndexPath {
+                tableView.insertRows(at: [indexPath], with: .automatic)
+            }
+        case .delete :
+            if let indexPath = newIndexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        case .move :
+            if let indexPath = indexPath {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+            
+            if let newIndexPath = newIndexPath {
+                tableView.insertRows(at: [newIndexPath], with: .automatic)
+            }
+        default:
+            break
+        }
+    }
+    
+    func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+        tableView.endUpdates()
+    }
+}

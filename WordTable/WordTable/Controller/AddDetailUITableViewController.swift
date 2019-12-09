@@ -32,6 +32,7 @@ class AddDetailUITableViewController: UITableViewController {
     @IBAction func saveButtonClicked(_ sender: Any) {
         guard let dept = department else { return }
         callAppropriateSaveTerms(dept: dept)
+        dismiss(animated: true, completion: nil)
     }
     
     private func callAppropriateSaveTerms(dept : Department){

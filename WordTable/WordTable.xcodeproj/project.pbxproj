@@ -14,8 +14,9 @@
 		3F9D3CF4239CB8EE00936033 /* DetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D3CF3239CB8EE00936033 /* DetailTableViewController.swift */; };
 		3F9D3CF6239CB9A900936033 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D3CF5239CB9A900936033 /* DetailTableViewCell.swift */; };
 		3F9D3CFA239CC09700936033 /* AddDetailUITableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D3CF9239CC09700936033 /* AddDetailUITableViewController.swift */; };
-		3F9D3CFC239CC14900936033 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9D3CFB239CC14900936033 /* Category.swift */; };
 		3FC43550239DD8C1001595E8 /* wordList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC4354F239DD8C1001595E8 /* wordList.swift */; };
+		3FC43552239DF41C001595E8 /* SortableBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC43551239DF41C001595E8 /* SortableBy.swift */; };
+		3FC43555239EA7CC001595E8 /* DetailViewControllerdelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC43554239EA7CC001595E8 /* DetailViewControllerdelegate.swift */; };
 		3FDBD046239C8313009D055C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDBD045239C8313009D055C /* AppDelegate.swift */; };
 		3FDBD048239C8313009D055C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FDBD047239C8313009D055C /* SceneDelegate.swift */; };
 		3FDBD04D239C8313009D055C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3FDBD04B239C8313009D055C /* Main.storyboard */; };
@@ -34,8 +35,9 @@
 		3F9D3CF3239CB8EE00936033 /* DetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewController.swift; sourceTree = "<group>"; };
 		3F9D3CF5239CB9A900936033 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		3F9D3CF9239CC09700936033 /* AddDetailUITableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddDetailUITableViewController.swift; sourceTree = "<group>"; };
-		3F9D3CFB239CC14900936033 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Category.swift; path = "../../../../../Projects/IOS App/Dictionary/Dictionary/Controllers/Category.swift"; sourceTree = "<group>"; };
 		3FC4354F239DD8C1001595E8 /* wordList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordList.swift; sourceTree = "<group>"; };
+		3FC43551239DF41C001595E8 /* SortableBy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortableBy.swift; sourceTree = "<group>"; };
+		3FC43554239EA7CC001595E8 /* DetailViewControllerdelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewControllerdelegate.swift; sourceTree = "<group>"; };
 		3FDBD042239C8313009D055C /* WordTable.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WordTable.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FDBD045239C8313009D055C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FDBD047239C8313009D055C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +59,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3FC43553239EA7A6001595E8 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				3FC43554239EA7CC001595E8 /* DetailViewControllerdelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		3FDBD039239C8313009D055C = {
 			isa = PBXGroup;
 			children = (
@@ -76,9 +86,10 @@
 		3FDBD044239C8313009D055C /* WordTable */ = {
 			isa = PBXGroup;
 			children = (
+				3FC43553239EA7A6001595E8 /* Protocols */,
 				3FDBD05E239C84AC009D055C /* View */,
 				3FDBD05D239C849D009D055C /* Controller */,
-				3FDBD05C239C8498009D055C /* Model */,
+				3FDBD05C239C8498009D055C /* Enums */,
 				3FDBD05F239C84CE009D055C /* Resources */,
 				3FDBD060239C84F1009D055C /* Data */,
 				3F9D3CE8239C880400936033 /* DepartmentList.swift */,
@@ -90,13 +101,13 @@
 			path = WordTable;
 			sourceTree = "<group>";
 		};
-		3FDBD05C239C8498009D055C /* Model */ = {
+		3FDBD05C239C8498009D055C /* Enums */ = {
 			isa = PBXGroup;
 			children = (
-				3F9D3CFB239CC14900936033 /* Category.swift */,
+				3FC43551239DF41C001595E8 /* SortableBy.swift */,
 				3F9D3CED239C887C00936033 /* Languages.swift */,
 			);
-			path = Model;
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		3FDBD05D239C849D009D055C /* Controller */ = {
@@ -211,16 +222,17 @@
 			files = (
 				3FDBD046239C8313009D055C /* AppDelegate.swift in Sources */,
 				3F9D3CEA239C880400936033 /* DepartmentList.swift in Sources */,
+				3FC43555239EA7CC001595E8 /* DetailViewControllerdelegate.swift in Sources */,
 				3F9D3CF4239CB8EE00936033 /* DetailTableViewController.swift in Sources */,
 				3F9D3CF0239CB5DD00936033 /* AddDeptViewController.swift in Sources */,
 				3F9D3CFA239CC09700936033 /* AddDetailUITableViewController.swift in Sources */,
 				3F9D3CEE239C887C00936033 /* Languages.swift in Sources */,
+				3FC43552239DF41C001595E8 /* SortableBy.swift in Sources */,
 				3F9D3CE6239C85A700936033 /* DepartmentTableViewController.swift in Sources */,
 				3FDBD050239C8313009D055C /* WordTable.xcdatamodeld in Sources */,
 				3FC43550239DD8C1001595E8 /* wordList.swift in Sources */,
 				3F9D3CF6239CB9A900936033 /* DetailTableViewCell.swift in Sources */,
 				3FDBD048239C8313009D055C /* SceneDelegate.swift in Sources */,
-				3F9D3CFC239CC14900936033 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

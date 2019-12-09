@@ -40,7 +40,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="21X-vV-oRp" kind="show" id="Rc5-3d-SZl"/>
+                                    <segue destination="21X-vV-oRp" kind="show" identifier="toDetailViewController" id="Rc5-3d-SZl"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -53,7 +53,7 @@
                     <navigationItem key="navigationItem" title="Departments" id="llX-wl-KTw">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="PCI-yl-Pf6">
                             <connections>
-                                <segue destination="DTO-zf-LJn" kind="presentation" id="hdl-WL-W9v"/>
+                                <segue destination="DTO-zf-LJn" kind="showDetail" identifier="toAddDepartmentTableViewController" id="Tti-JG-bsD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -72,14 +72,14 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="detailCell" id="svX-BO-7C1" customClass="DetailTableViewCell" customModule="WordTable" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="304"/>
+                                <rect key="frame" x="0.0" y="28" width="414" height="305"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="svX-BO-7C1" id="uen-Ce-Myx">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="304"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="305"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Vcx-cK-Lxt">
-                                            <rect key="frame" x="5" y="0.0" width="409" height="304"/>
+                                            <rect key="frame" x="5" y="0.0" width="409" height="305"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="plf-B4-T0P">
                                                     <rect key="frame" x="0.0" y="0.0" width="409" height="38"/>
@@ -103,7 +103,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="h82-3G-PFN">
-                                                    <rect key="frame" x="0.0" y="114" width="409" height="38"/>
+                                                    <rect key="frame" x="0.0" y="114" width="409" height="38.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="20"/>
@@ -111,28 +111,28 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Somali" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r2F-nU-MUb">
-                                                    <rect key="frame" x="0.0" y="152" width="409" height="37.5"/>
+                                                    <rect key="frame" x="0.0" y="152.5" width="409" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Szc-uw-TgD">
-                                                    <rect key="frame" x="0.0" y="189.5" width="409" height="38"/>
+                                                    <rect key="frame" x="0.0" y="190.5" width="409" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="hmong" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bhc-fO-eeW">
-                                                    <rect key="frame" x="0.0" y="227.5" width="409" height="38"/>
+                                                    <rect key="frame" x="0.0" y="228.5" width="409" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Mta-5r-u4x">
-                                                    <rect key="frame" x="0.0" y="265.5" width="409" height="38"/>
+                                                    <rect key="frame" x="0.0" y="266.5" width="409" height="38"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                     <nil key="textColor"/>
@@ -326,7 +326,7 @@
             <objects>
                 <viewController id="DDp-jg-nt8" customClass="AddDeptViewController" customModule="WordTable" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OTy-3U-IPe">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" id="oT1-4E-Mkz">
@@ -396,7 +396,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="zSn-yW-KvA"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="WUc-sF-47y">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

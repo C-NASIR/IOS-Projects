@@ -21,7 +21,7 @@ struct wordsList {
         ],
         
         "Bloated" :
-            [
+        [
                 Languages.English : "distended, puffed, swollen", Languages.Spanish : "inflado, sofocado" , Languages.Somali: "Dibbiro", Languages.Hmong : ""
         ],
         
@@ -42,39 +42,37 @@ struct wordsList {
             Languages.Spanish: "deshidratado", Languages.Somali: "Oomid ama Haraad xooga", Languages.Hmong: "muaj dej tsis txaus"
         ],
         "Asthma" :
-               [
-                   Languages.English : "A condition in which a person's airways become inflamed, narrow and swell, and produce extra mucus, which makes it difficult to breathe.",
-                   Languages.Spanish : "asma", Languages.Somali : "Neef", Languages.Hmong : "mob hawb pob"
-               ],
+        [
+            Languages.English : "A condition in which a person's airways become inflamed, narrow and swell, and produce extra mucus, which makes it difficult to breathe.",
+            Languages.Spanish : "asma", Languages.Somali : "Neef", Languages.Hmong : "mob hawb pob"
+        ],
                
         "Cavities/dental caries" :
-               [
-                   Languages.English : "Permanently damaged areas in teeth that develop into tiny holes.",
-                   Languages.Spanish: "caries/caries dentales", Languages.Somali: "Shuush", Languages.Hmong : "kab noj hniav"
-               ],
+        [
+            Languages.English : "Permanently damaged areas in teeth that develop into tiny holes.",
+            Languages.Spanish: "caries/caries dentales", Languages.Somali: "Shuush", Languages.Hmong : "kab noj hniav"
+        ],
                
-               "Croup" :
-                   [
-                       Languages.English : "An upper airway infection that blocks breathing and has a distinctive barking cough.", Languages.Spanish : "crup" , Languages.Somali: "Dibbiro", Languages.Hmong : ""
-               ],
+        "Croup" :
+        [
+            Languages.English : "An upper airway infection that blocks breathing and has a distinctive barking cough.", Languages.Spanish : "crup" , Languages.Somali: "Dibbiro", Languages.Hmong : ""
+        ],
+        
+        "Ear infection" :
+        [
+            Languages.English : "An inflammation of the inner, middle, or outer ear, often with infection.",
+            Languages.Spanish: "infección del oído", Languages.Somali : "Dhego Xanuun", Languages.Hmong : "pob ntsheg ua paug"
+        ],
+        "Eczema" :
+        [
+            Languages.English : "An itchy inflammation of the skin.",
+            Languages.Spanish : "eccema", Languages.Somali : "cambaar", Languages.Hmong : "huaj tawv nqaij"
+        ],
                
-               "Ear infection" :
-               [
-                   Languages.English : "An inflammation of the inner, middle, or outer ear, often with infection.",
-                   Languages.Spanish: "infección del oído", Languages.Somali : "Dhego Xanuun", Languages.Hmong : "pob ntsheg ua paug"
-               ],
-               "Eczema" :
-               [
-                   Languages.English : "An itchy inflammation of the skin.",
-                   Languages.Spanish : "eccema", Languages.Somali : "cambaar", Languages.Hmong : "huaj tawv nqaij"
-               ],
-               
-               "Hand, foot and mouth disease" :
-               [
-                   Languages.English : "A common children's virus causing sores in the mouth and a rash on the hands and feet.",
-                   Languages.Spanish: "aftas en las manos, pies, y boca", Languages.Somali: "Gacmaha,Lugta iyo Afka cuddur ka dhaco", Languages.Hmong: "kabmob tes, taw, thiab qhov nqauj"
-               ]
+        "Hand, foot and mouth disease" :
+        [
+            Languages.English : "A common children's virus causing sores in the mouth and a rash on the hands and feet.",
+            Languages.Spanish: "aftas en las manos, pies, y boca", Languages.Somali: "Gacmaha,Lugta iyo Afka cuddur ka dhaco", Languages.Hmong: "kabmob tes, taw, thiab qhov nqauj"
+        ]
     ]
-    
-       
 }
