@@ -16,6 +16,7 @@ class DepartmentTableViewController: UITableViewController {
     private var priorityCount  = 1
     private let toAddDepartmentTableViewController = "toAddDepartmentTableViewController"
     private let toDetailViewController = "toDetailViewController"
+    private let toUpdateViewController = "toUpdateViewController"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = self.editButtonItem
@@ -90,24 +91,59 @@ class DepartmentTableViewController: UITableViewController {
     //MARK: ~ Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == toDetailViewController {
-            callDetailTableViewController(segue)
-        } else if segue.identifier == toAddDepartmentTableViewController {
+            if isValidSelectedIndexPath() {
+                let indexPath = getValidSelectedIndexPath()
+                callDetailTableViewController(segue, indexPath: indexPath)
+            }
+        } else
+            if segue.identifier == toAddDepartmentTableViewController {
             callAddViewController(segue)
+        } else
+                if segue.identifier == toUpdateViewController {
+            guard let indexPath = getAccessorsIndexPathFromTheCell(sender: sender) else { return }
+            callUpdateViewController(segue, indexPath: indexPath)
         }
     }
     
     //MARK: - Private Methods
     private func callAddViewController(_ segue : UIStoryboardSegue){
-        guard let nav = segue.destination as? UINavigationController else { return }
-        guard let addVC = nav.viewControllers.first as? AddDeptViewController else { return }
+        guard let addVC = getManupulateDepartmentViewController(segue) else { return }
         addVC.appdelegate = appdelegate
         addVC.persistentContainer = persistentContainer
     }
-    
-    private func callDetailTableViewController(_ segue : UIStoryboardSegue){
+
+    private func callDetailTableViewController(_ segue : UIStoryboardSegue, indexPath : IndexPath){
         guard let detailTVC = segue.destination as? DetailTableViewController else { return }
-        guard let indexPath = tableView.indexPathForSelectedRow else { return }
         detailTVC.department = deptFetchedRC.object(at: indexPath)
+        detailTVC.appdelegate = appdelegate
+        detailTVC.persistentContainer = persistentContainer
+    }
+    
+    private func callUpdateViewController(_ segue : UIStoryboardSegue, indexPath : IndexPath) {
+        guard let updateVC = getManupulateDepartmentViewController(segue) else { return }
+        updateVC.department = deptFetchedRC.object(at: indexPath)
+        updateVC.delegate = self
+    }
+    
+    private func getAccessorsIndexPathFromTheCell(sender : Any?) -> IndexPath?{
+        guard let cell = sender as? UITableViewCell else { return nil}
+        let indexPath = tableView.indexPath(for: cell)
+        return indexPath
+    }
+    
+    private func getManupulateDepartmentViewController(_ segue : UIStoryboardSegue) -> ManupulateDepartmentViewController? {
+        guard let nav = segue.destination as? UINavigationController else { return nil }
+        guard let addVC = nav.viewControllers.first as? ManupulateDepartmentViewController else { return nil}
+        return addVC
+    }
+
+    private func isValidSelectedIndexPath() -> Bool {
+        guard tableView.indexPathForSelectedRow != nil else { return false }
+        return true
+    }
+    
+    private func getValidSelectedIndexPath() -> IndexPath {
+        return tableView.indexPathForSelectedRow!
     }
 }
 
@@ -146,5 +182,13 @@ extension DepartmentTableViewController : NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+}
+
+extension DepartmentTableViewController : UpdateDeptViewControllerDelegate {
+    func ManupulateDepartmentViewController(_ controller: ManupulateDepartmentViewController, didFinishAddingDepartment dept: Department, values: [String : String]) {
+        dept.name = values["name"]
+        dept.deptdescription = values["description"]
+        appdelegate.saveContext()
     }
 }

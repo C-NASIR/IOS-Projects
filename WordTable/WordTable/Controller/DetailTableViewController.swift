@@ -9,9 +9,13 @@
 import UIKit
 import CoreData
 class DetailTableViewController: UITableViewController {
-    let appdelegate = UIApplication.shared.delegate as! AppDelegate
-    let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var appdelegate : AppDelegate!
+    private var query = ""
+    var persistentContainer : NSPersistentContainer!
+    private let toAddDetailViewControllerSegue = "toAddDetailViewControllerSegue"
+    private let toUpdateViewControllerSegue = "toUpdateViewControllerSegue"
     var department : Department!
+        @IBOutlet weak var EditButton: UIBarButtonItem!
     private var fetchTermsRC : NSFetchedResultsController<Term>!
     
     override func viewDidLoad() {
@@ -19,19 +23,18 @@ class DetailTableViewController: UITableViewController {
         title = department.name
         refresh()
     }
-    
     private func refresh(){
         let termsRequest = Term.fetchRequest() as NSFetchRequest<Term>
-        
+        if query.isEmpty {
+          termsRequest.predicate  = NSPredicate(format: "(department = %@)", department)
+        }else {
+            termsRequest.predicate = NSPredicate(format: "english CONTAINS[cd] %@ AND department = %@", query,department)
+        }
         let termSort = NSSortDescriptor(key: "english", ascending: true)
                 
         termsRequest.sortDescriptors = [termSort]
-    
-        let deptPredicate = NSPredicate(format: "(department = %@)", department)
-
-        termsRequest.predicate = deptPredicate
         
-        fetchTermsRC = NSFetchedResultsController(fetchRequest: termsRequest, managedObjectContext: context, sectionNameKeyPath: nil, cacheName: nil)
+        fetchTermsRC = NSFetchedResultsController(fetchRequest: termsRequest, managedObjectContext: persistentContainer.viewContext, sectionNameKeyPath: nil, cacheName: nil)
         
         fetchTermsRC.delegate = self
         do {
@@ -76,7 +79,7 @@ class DetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let term = fetchTermsRC.object(at: indexPath)
-            context.delete(term)
+            persistentContainer.viewContext.delete(term)
             appdelegate.saveContext()
         }
     }
@@ -86,13 +89,44 @@ class DetailTableViewController: UITableViewController {
         term.priority = 1
         appdelegate.saveContext()
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     
     //MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let nav = segue.destination as? UINavigationController,
-            let addDetailVC = nav.viewControllers.first as? AddDetailUITableViewController {
-            addDetailVC.department = department
+        if segue.identifier == toAddDetailViewControllerSegue {
+            callAddDetailViewController(segue)
+        } else if segue.identifier == toUpdateViewControllerSegue {
+            guard let indexPath = getAccessorsIndexPathFromTheCell(sender: sender) else { return }
+            callUpdateDetailViewController(segue, indexPath: indexPath)
         }
+    }
+    
+    //MARK: - Private Methods
+    private func callUpdateDetailViewController(_ segue : UIStoryboardSegue, indexPath : IndexPath) {
+        guard let updateVC = getManupulateDetailUITableViewController(segue) else { return }
+        updateVC.term = fetchTermsRC.object(at: indexPath)
+        updateVC.delegate = self
+    }
+    
+    private func callAddDetailViewController(_ segue : UIStoryboardSegue) {
+        guard let addDetailVC = getManupulateDetailUITableViewController(segue) else { return }
+        addDetailVC.department = department
+        addDetailVC.appDelegate = appdelegate
+        addDetailVC.persistentContainer = persistentContainer
+    }
+    
+    private func getManupulateDetailUITableViewController(_ segue : UIStoryboardSegue) -> ManupulateDetailUITableViewController? {
+        guard let nav = segue.destination as? UINavigationController else { return nil }
+        guard let updatedVC = nav.viewControllers.first as? ManupulateDetailUITableViewController else { return nil}
+        return updatedVC
+    }
+    
+    private func getAccessorsIndexPathFromTheCell(sender : Any?) -> IndexPath?{
+        guard let cell = sender as? UITableViewCell else { return nil}
+        let indexPath = tableView.indexPath(for: cell)
+        return indexPath
     }
     
     //MARK: Only for initial loading of PediatricTerms
@@ -100,7 +134,7 @@ class DetailTableViewController: UITableViewController {
         if department.name == "Pediatrics" {
             let termsDic = wordsList().Pterms
             for (english,terms) in  termsDic {
-                let term = Term(context: context)
+                let term = Term(context: persistentContainer.viewContext)
                 print(english)
                 term.english = english
                 term.termdescription = terms[Languages.English]
@@ -126,8 +160,13 @@ extension DetailTableViewController : NSFetchedResultsControllerDelegate {
                 tableView.insertRows(at: [indexPath], with: .automatic)
             }
         case .delete :
-            if let indexPath = newIndexPath {
+            if let indexPath = indexPath {
                 tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        case .update :
+            if let indexPath = indexPath, let cell = tableView.cellForRow(at: indexPath) {
+                guard let cell = cell as? DetailTableViewCell else { return }
+                configureCell(cell, at: indexPath)
             }
         case .move :
             if let indexPath = indexPath {
@@ -144,5 +183,35 @@ extension DetailTableViewController : NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         tableView.endUpdates()
+    }
+}
+
+extension DetailTableViewController : UpdateDetailViewControllerDelegate {
+    func ManupulateDetailUITableViewController(_ controller: ManupulateDetailUITableViewController, didFinishAddingTerm term: Term, department dept: Department, values: [String : String]) {
+        term.english = values["name"]!
+        term.termdescription = values["description"]!
+        term.spanish = values["spanish"]!
+        term.somali = values["somali"]!
+        term.hmong = values["hmong"]!
+        term.department = dept
+        appdelegate.saveContext()
+    }
+}
+
+extension DetailTableViewController : UISearchBarDelegate {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let text = searchBar.text else { return }
+        query = text
+        refresh()
+        searchBar.resignFirstResponder()
+        tableView.reloadData()
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        query = ""
+        searchBar.text = nil
+        searchBar.resignFirstResponder()
+        refresh()
+        tableView.reloadData()
     }
 }
