@@ -31,14 +31,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func addItem() {
-        collectionView.performBatchUpdates({
-            for _ in 1...3 {
-                let text = "\(collectionData.count + 1) 😸"
-                collectionData.append(text)
-                let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
-                collectionView.insertItems(at:[indexPath] )
-            }
-        }, completion: nil)
+        let text = "\(collectionData.count + 1) 😸"
+        collectionData.append(text)
+        let indexPath = IndexPath(row: collectionData.count - 1, section: 0)
+        collectionView.insertItems(at:[indexPath] )
     }
     
     @IBAction func deleteItems(){
