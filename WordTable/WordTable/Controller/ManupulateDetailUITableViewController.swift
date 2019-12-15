@@ -26,7 +26,7 @@ class ManupulateDetailUITableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        giveAppropriateTitle()
         if term != nil {
             displayDetailInfo()
         }
@@ -118,10 +118,10 @@ class ManupulateDetailUITableViewController: UITableViewController {
     }
     
     private func giveAppropriateTitle() {
-        if department != nil {
-            title = "Edit \(department!.name ?? ""))"
-        }else {
-            title = "Add Department"
+        if let name = term?.english {
+            title = "Edit \(name)"
+        } else {
+            title = "Add Term"
         }
     }
     private func displayDetailInfo(){

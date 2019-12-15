@@ -17,6 +17,7 @@ class ManupulateDepartmentViewController: UIViewController {
     var department : Department?
     var delegate : UpdateDeptViewControllerDelegate?
     var persistentContainer : NSPersistentContainer!
+    private let departmentDescPlaceHolder = "Please delete this text and enter the description of your department"
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var descriptionTextView: UITextView!
     override func viewDidLoad() {
@@ -42,7 +43,7 @@ class ManupulateDepartmentViewController: UIViewController {
     //MARK: - Private functions
     private func IsvalidValuesEntered() -> Bool {
         if nameTextField.text != nil && !nameTextField.text!.isEmpty,
-            descriptionTextView.text != nil && !descriptionTextView.text.isEmpty {
+        descriptionTextView.text != nil && descriptionTextView.text != departmentDescPlaceHolder {
             return true
         }
         return false
@@ -55,7 +56,11 @@ class ManupulateDepartmentViewController: UIViewController {
     }
     
     private func tellUserToEnterValidInfo(){
-        title = "Please Fill Both"
+        if descriptionTextView.text == departmentDescPlaceHolder {
+            title = "Enter your description"
+        } else {
+            title = "Enter a name"
+        }
     }
     
     private func saveDept(name : String, description : String){
